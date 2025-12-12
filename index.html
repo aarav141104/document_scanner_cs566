@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Robust Automatic Document Scanner - CS566 Project</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 900px; margin: auto; padding: 20px; line-height: 1.6; }
+        h1, h2 { color: #333; }
+        img { max-width: 100%; margin: 10px 0; border: 1px solid #ddd; }
+    </style>
+</head>
+<body>
+
+<h1>Robust Automatic Document Scanner Using Classical Computer Vision</h1>
+<p><strong>Author:</strong> Aarav Anand<br>
+<strong>Course:</strong> CS 566 (Fall 2025)</p>
+
+<hr>
+
+<h2>1. Motivation</h2>
+<p>
+Photos of documents taken on phones are often skewed, shadowed, and difficult to read. 
+The goal of this project is to automatically detect the document region in a natural image 
+and correct the perspective so that it appears as a clean, top-down scanned page.
+</p>
+
+<hr>
+
+<h2>2. Approach</h2>
+<p>
+My approach uses a classical computer vision pipeline:
+<ul>
+    <li>Gaussian blur to reduce noise</li>
+    <li>Adaptive thresholding to handle uneven lighting</li>
+    <li>Morphological closing and dilation to strengthen weak edges</li>
+    <li>Contour detection with convex-hull fallback for robust document boundary detection</li>
+    <li>Corner ordering (TL, TR, BR, BL)</li>
+    <li>Homography-based perspective transform to flatten the document</li>
+</ul>
+</p>
+
+<hr>
+
+<h2>3. Implementation</h2>
+<p>
+The implementation was done in Python using OpenCV.  
+Below is a high-level overview of the main steps:
+</p>
+<pre>
+1. Read and preprocess the image  
+2. Apply adaptive thresholding  
+3. Use morphology to clean and enhance edges  
+4. Detect largest document-like contour  
+5. Order points  
+6. Compute homography and warp the image  
+</pre>
+
+<p>Full code is available here: <a href="YOUR_GITHUB_LINK_HERE">GitHub Repository</a></p>
+
+<hr>
+
+<h2>4. Results</h2>
+<p>Below are sample before/after results:</p>
+
+<p><strong>Original Image:</strong></p>
+<img src="images/original.jpg">
+
+<p><strong>Preprocessed Mask:</strong></p>
+<img src="images/mask.jpg">
+
+<p><strong>Final Scanned Output:</strong></p>
+<img src="images/scan.jpg">
+
+<hr>
+
+<h2>5. Problems Encountered & What I Learned</h2>
+<p>
+<ul>
+    <li>Simple Canny edge detection failed on noisy backgrounds</li>
+    <li>Shadows and faint document boundaries required stronger preprocessing</li>
+    <li>Point ordering was critical—incorrect ordering distorted the warp</li>
+    <li>Real-world images needed more robust thresholding and morphology</li>
+</ul>
+This project deepened my understanding of classical CV and geometric reasoning.
+</p>
+
+<hr>
+
+<h2>6. Interesting Observations / Comparisons</h2>
+<p>
+Adaptive thresholding plus morphology performed far better than simple edge detection.  
+Convex hull fallback significantly improved robustness on weak-edge images.
+</p>
+
+<hr>
+
+<h2>7. Presentation Video</h2>
+<p>
+<a href="YOUR_PRESENTATION_LINK_HERE">Click here to view the presentation</a>
+</p>
+
+<hr>
+
+<h2>8. Code Repository</h2>
+<p>
+<a href="YOUR_GITHUB_LINK_HERE">GitHub Link</a>
+</p>
+
+</body>
+</html>
